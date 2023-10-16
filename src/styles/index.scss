@@ -1,0 +1,36 @@
+@use 'reset';
+@use 'vars';
+@import "custom";
+
+body {
+  font-family: 'Handlee', cursive;
+}
+
+.anim {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    color: vars.$second-color;
+    transform: scale(1.02);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.anim2 {
+  cursor: pointer;
+
+  &:hover {
+    color: vars.$second-color;
+    transform: scale(1.02);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.animation {
+  cursor: pointer;
+
+  &:hover {
+    color: vars.$jeme;
+  }
+}
