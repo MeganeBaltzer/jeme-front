@@ -4,6 +4,8 @@ $theme-colors: (
   "yellow": #c79f23,
   "white": #ffff,
   "black": #000000,
+  "danger":red,
+  "success":rgb(255, 255, 255),   
 );
 
 @import "~bootstrap/scss/bootstrap";

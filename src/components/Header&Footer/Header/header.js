@@ -11,16 +11,16 @@ function Header() {
   const normalLink = ' mx-4 text-black text-decoration-none pb-1 transition-normal';
   const displayNoneSearch = 'd-none';
 
-  // Step 1: Create state variable to track the open/closed state of the Navbar toggle
+  // Create state variable to track the open/closed state of the Navbar toggle
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   const [burgerIsVisible, setBurgerIsVisible] = useState(false);
 
-  // Step 2: Create a function to toggle the Navbar
+  // Create a function to toggle the Navbar
   const toggleNavbar = () => {
     setIsToggleOpen(!isToggleOpen);
   };
 
-  // Step 3: Add an event listener to handle the Navbar toggle closing
+  // Add an event listener to handle the Navbar toggle closing
   const handleToggleClose = () => {
     setIsToggleOpen(false);
   };
@@ -48,9 +48,8 @@ function Header() {
     <header>
       <Navbar
         expand="lg"
-        className="px-4 py-0 sticky-header"
         style={{
-          position: 'fixed', top: '0', width: '100%', zIndex: '1000',
+          position: 'fixed', top: '0', width: '100%', zIndex: '1000', display: 'block',
         }}
         bg="white"
         variant="dark"
@@ -58,25 +57,74 @@ function Header() {
         expanded={isToggleOpen}
         onToggle={toggleNavbar}
       >
-        <Form.Control
-          type="text"
-          placeholder="Search"
-          className={`mb-2 ${!burgerIsVisible && !isToggleOpen ? displayNoneSearch : 'ms-auto'}`}
-          style={{ margin: '2em', width: '5em' }}
-        />
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
+        <title
+          to="/"
           style={{
-            backgroundColor: '#435747', padding: '0.2em', margin: '1em', marginBottom: '0',
+            textDecoration: 'none', display: 'flex', justifyContent: 'center', marginTop: '3em',
           }}
-        />
-        <Navbar.Collapse className="justify-content-between" style={{ marginRight: '2em' }}>
-          <Nav className="left-nav align-items-center" style={{ margin: '2%' }}>
+          onClick={handleToggleClose}
+          className={`mb-2 ${!burgerIsVisible && !isToggleOpen ? displayNoneSearch : 'ms-auto'}`}
+        >
+          <h1
+            style={{
+              color: '#c79f23', fontSize: '0.9em', fontFamily: 'Pacifico', textDecorationLine: 'overline', marginBottom: '2em',
+            }}
+          >
+            JEME
+          </h1>
+        </title>
+        <div
+          className="toggleForm"
+          style={{
+            display: 'flex', alignItems: 'center', marginLeft: '2em', marginRight: '2em',
+          }}
+        >
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            style={{
+              backgroundColor: '#435747', padding: '0.2em', margin: '1em', marginBottom: '0',
+            }}
+          />
+          <Form.Control
+            type="text"
+            placeholder="Rechercher"
+            className={`mb-2 ${!burgerIsVisible && !isToggleOpen ? displayNoneSearch : 'ms-auto'}`}
+            style={{ margin: '2em', width: '40em' }}
+          />
+        </div>
+        <Navbar.Collapse
+          className="justify-content-between"
+          style={{ marginRight: '2em' }}
+        >
+          <Nav
+            className="left-nav align-items-center"
+            style={{ margin: '2%' }}
+          >
+            {!isToggleOpen && (
+              <Navbar.Brand
+                aria-label="logo Jeme"
+              >
+                <NavLink
+                  to="/"
+                  aria-label="logo Jeme"
+                  style={{ textDecoration: 'none' }}
+                  onClick={handleToggleClose}
+                >
+                  <h1
+                    style={{
+                      color: '#c79f23', fontSize: '0.9em', fontFamily: 'Pacifico', textDecorationLine: 'overline',
+                    }}
+                  >
+                    JEME
+                  </h1>
+                </NavLink>
+              </Navbar.Brand>
+            )}
             <NavLink
               to="/"
               aria-label="lien vers l'accueil"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em' }}
@@ -88,7 +136,7 @@ function Header() {
               to="/babySewing"
               aria-label="lien vers les coutures bébé"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
               style={{ textAlign: 'center' }}
             >
               <h1
@@ -101,7 +149,7 @@ function Header() {
               to="/accessories"
               aria-label="lien vers les accessoires"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em' }}
@@ -113,7 +161,7 @@ function Header() {
               to="/pouches"
               aria-label="lien vers les pochettes"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em' }}
@@ -125,7 +173,7 @@ function Header() {
               to="/bags"
               aria-label="lien vers les sacs"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em' }}
@@ -137,7 +185,7 @@ function Header() {
               to="/jewels"
               aria-label="lien vers les bijoux"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em' }}
@@ -149,12 +197,24 @@ function Header() {
               to="/cooking"
               aria-label="lien vers la rubrique cuisine"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em' }}
               >
                 Cuisine
+              </h1>
+            </NavLink>
+            <NavLink
+              to="/promos"
+              aria-label="lien vers les bijoux"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+              onClick={handleToggleClose}
+            >
+              <h1
+                style={{ fontSize: '0.9em' }}
+              >
+                Nos promos
               </h1>
             </NavLink>
           </Nav>
@@ -168,7 +228,7 @@ function Header() {
               to="/babySewing"
               aria-label="lien vers les coutures bébé"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
               style={{ textAlign: 'center' }}
             >
               <h1
@@ -178,10 +238,10 @@ function Header() {
               </h1>
             </NavLink> */}
             <NavLink
-              to="/jewels"
+              to="/contact"
               aria-label="lien vers les bijoux"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              onClick={handleToggleClose} // Step 4: Close the toggle on NavLink click
+              onClick={handleToggleClose}
             >
               <h1
                 style={{ fontSize: '0.9em', marginRight: '1em' }}
@@ -196,14 +256,14 @@ function Header() {
                 variant="dark"
                 size="sm"
                 className="anim fs-6 mb-2 btn m-1 text-white"
-                style={{ backgroundColor: '#435747' }}
+                style={{ backgroundColor: '#c79f23' }}
                 aria-label="bouton pour se connecter"
               >
                 Connexion
               </Button>
               <Button
                 className="anim fs-6 mb-2 btn m-1 text-white"
-                style={{ backgroundColor: '#c79f23' }}
+                style={{ backgroundColor: '#435747' }}
                 to="/register"
                 as={Link}
                 variant="dark "

@@ -4,12 +4,14 @@ import {
 } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 import instagramIcon from '../../../assets/img/instagram.svg';
 import './styles.scss';
 
 function Footer() {
   const instagramUrl = 'https://www.instagram.com/jeme_creations/';
   const [burgerIsVisible, setBurgerIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fonction de rappel pour mettre à jour l'état en fonction de la taille de l'écran
@@ -30,6 +32,10 @@ function Footer() {
     };
   }, []);
 
+  const contactForm = () => {
+    navigate('/contact');
+  };
+
   return (
     <div className="footer-wrapper">
       <Card className="text-center">
@@ -39,7 +45,7 @@ function Footer() {
           <Card.Text>
             N'hésitez pas à nous contacter via notre fiche de contact. Nous nous engageons à vousu répondre dans les 48h.
           </Card.Text>
-          <Button className="anim" variant="waterGreen">Nous contacter</Button>
+          <Button className="anim" onClick={contactForm} variant="waterGreen">Nous contacter</Button>
         </Card.Body>
         <Container>
           <Row
@@ -48,7 +54,8 @@ function Footer() {
             <Col>
               <NavLink to={null} style={{ paddingBottom: '1em' }}><strong>FAQ</strong></NavLink>
               <NavLink className="animation" style={{ paddingBottom: '1em' }}>Faire un retour ?</NavLink>
-              <NavLink className="animation">Suivre ma commande</NavLink>
+              <NavLink className="animation" style={{ paddingBottom: '1em' }}>Suivre ma commande</NavLink>
+              <NavLink className="animation">Autres</NavLink>
             </Col>
             <Col>
               <NavLink to={null} style={{ paddingBottom: '1em' }}><strong>A propos</strong></NavLink>

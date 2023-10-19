@@ -1,0 +1,30 @@
+/* BabySewing.css */
+
+/* Style par défaut de la case à cocher */
+label {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #435747;
+  margin-right: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.check-mark {
+  color: #c79f23; /* Couleur verte en exemple */
+  font-size: 1.2em;
+  display: none;
+}
+
+/* Style de la case à cocher cochée */
+label.checked .check-mark {
+  display: block;
+}
