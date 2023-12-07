@@ -3,7 +3,7 @@ import {
   CHANGE_FIELD_REGISTER,
   RESET_FORM,
   CHANGE_FIELD_LOGIN,
-} from '../../actions/users';
+} from '../actions/users';
 
 export const initialState = {
   email: '',

@@ -34,3 +34,23 @@ body {
     color: vars.$jeme;
   }
 }
+
+.anim3 {
+  cursor: pointer;
+  color: white;
+
+  &:hover {
+    color: vars.$jeme;
+    transform: scale(1.02);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.anim4 {
+  cursor: pointer;
+  color: vars.$jeme;
+
+  &:hover {
+    color: vars.$second-color;
+  }
+}

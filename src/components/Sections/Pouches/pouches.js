@@ -1,15 +1,20 @@
-// Dans Accessories.jsx
 import { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFilter } from '../../../actions/products';
+import Loading from '../../Loading/loading';
 import Filter from '../Filter/filter';
 import Cards from '../Cards/cards';
+import pouchesFilter from '../../../datas/pouchesFilter';
 
 function Pouches() {
-  const [filterVisible, setFilterVisible] = useState(false);
-
-  const toggleFilter = () => {
-    setFilterVisible(!filterVisible);
-  };
+  const dispatch = useDispatch();
+  // const [filterVisible, setFilterVisible] = useState(false);
+  const pouchesList = useSelector((state) => state.products.list.filter((item) => item.category.name === 'Pochettes'));
+  // const filterVisible = useSelector((state) => state.products.filterVisible);
+  // const toggleFilter = () => {
+  //   setFilterVisible(!filterVisible);
+  // };
 
   return (
     <Row style={{ marginTop: '14em' }}>
@@ -19,14 +24,29 @@ function Pouches() {
           style={{
             position: 'fixed', top: '4.5em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
           }}
-          onClick={toggleFilter}
+          onClick={() => {
+            dispatch(toggleFilter());
+          }}
         >
           Filtrer
         </Button>
-        <Filter filterVisible={filterVisible} toggleFilter={toggleFilter} />
+        <Filter
+          // filterVisible={filterVisible}
+          // toggleFilter={toggleFilter}
+          pouchesFilter={pouchesFilter}
+        />
       </Col>
       <Col>
-        <Cards />
+        {
+          pouchesList ? (
+            <Cards
+              pouchesList={pouchesList}
+            />
+          )
+            : (
+              <Loading />
+            )
+        }
       </Col>
     </Row>
   );

@@ -1,11 +1,15 @@
-// Dans Accessories.jsx
+/* eslint-disable max-len */
 import { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import Loading from '../../Loading/loading';
 import Filter from '../Filter/filter';
 import Cards from '../Cards/cards';
 
 function Promotions() {
   const [filterVisible, setFilterVisible] = useState(false);
+  const promosList = useSelector((state) => state.products.list.filter((item) => item.promotion === true));
+  // console.log(promosList);
 
   const toggleFilter = () => {
     setFilterVisible(!filterVisible);
@@ -26,12 +30,19 @@ function Promotions() {
         <Filter filterVisible={filterVisible} toggleFilter={toggleFilter} />
       </Col>
       <Col>
-        <Cards />
+        {
+          promosList ? (
+            <Cards
+              promosList={promosList}
+            />
+          )
+            : (
+              <Loading />
+            )
+        }
       </Col>
     </Row>
   );
 }
 
 export default Promotions;
-
-// https://route360.dev/fr/post/filter-array-list/

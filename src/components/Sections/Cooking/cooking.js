@@ -1,15 +1,20 @@
-// Dans Accessories.jsx
 import { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFilter } from '../../../actions/products';
 import Filter from '../Filter/filter';
+import Loading from '../../Loading/loading';
 import Cards from '../Cards/cards';
+import cookingFilter from '../../../datas/cookingFilter';
 
 function Cooking() {
-  const [filterVisible, setFilterVisible] = useState(false);
-
-  const toggleFilter = () => {
-    setFilterVisible(!filterVisible);
-  };
+  const dispatch = useDispatch();
+  // const [filterVisible, setFilterVisible] = useState(false);
+  const cookingList = useSelector((state) => state.products.list.filter((item) => item.category.name === 'Cuisine'));
+  // const filterVisible = useSelector((state) => state.products.filterVisible);
+  // const toggleFilter = () => {
+  //   setFilterVisible(!filterVisible);
+  // };
 
   return (
     <Row style={{ marginTop: '14em' }}>
@@ -19,14 +24,29 @@ function Cooking() {
           style={{
             position: 'fixed', top: '4.5em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
           }}
-          onClick={toggleFilter}
+          onClick={() => {
+            dispatch(toggleFilter());
+          }}
         >
           Filtrer
         </Button>
-        <Filter filterVisible={filterVisible} toggleFilter={toggleFilter} />
+        <Filter
+          // filterVisible={filterVisible}
+          // toggleFilter={toggleFilter}
+          cookingFilter={cookingFilter}
+        />
       </Col>
       <Col>
-        <Cards />
+        {
+          cookingList ? (
+            <Cards
+              cookingList={cookingList}
+            />
+          )
+            : (
+              <Loading />
+            )
+        }
       </Col>
     </Row>
   );

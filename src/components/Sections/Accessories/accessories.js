@@ -1,15 +1,22 @@
-// Dans Accessories.jsx
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Button } from 'react-bootstrap';
+import { toggleFilter } from '../../../actions/products';
 import Filter from '../Filter/filter';
 import Cards from '../Cards/cards';
+import Loading from '../../Loading/loading';
+import accessoriesFilter from '../../../datas/accessoriesFilter';
 
 function Accessories() {
-  const [filterVisible, setFilterVisible] = useState(false);
+  const dispatch = useDispatch();
+  // const [filterVisible, setFilterVisible] = useState(false);
+  const accessoriesList = useSelector((state) => state.products.list.filter((item) => item.category.name === 'Accessoires'));
+  console.log(accessoriesList);
+  // const filterVisible = useSelector((state) => state.products.filterVisible);
 
-  const toggleFilter = () => {
-    setFilterVisible(!filterVisible);
-  };
+  // const toggleFilter = () => {
+  //   setFilterVisible(!filterVisible);
+  // };
 
   return (
     <Row style={{ marginTop: '14em' }}>
@@ -19,14 +26,29 @@ function Accessories() {
           style={{
             position: 'fixed', top: '4.5em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
           }}
-          onClick={toggleFilter}
+          onClick={() => {
+            dispatch(toggleFilter());
+          }}
         >
           Filtrer
         </Button>
-        <Filter filterVisible={filterVisible} toggleFilter={toggleFilter} />
+        <Filter
+          // filterVisible={filterVisible}
+          // toggleFilter={toggleFilter}
+          accessoriesFilter={accessoriesFilter}
+        />
       </Col>
       <Col>
-        <Cards />
+        {
+          accessoriesList ? (
+            <Cards
+              accessoriesList={accessoriesList}
+            />
+          )
+            : (
+              <Loading />
+            )
+        }
       </Col>
     </Row>
   );

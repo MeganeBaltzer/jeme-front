@@ -1,26 +1,90 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-/* eslint-disable eqeqeq */
-import {
-  Row,
-} from 'react-bootstrap';
+/* eslint-disable max-len */
+/* eslint-disable react/require-default-props */
+import { Row } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import CardType from './cardType';
 
-const Cards = () => (
-  <section aria-label="Tous les produits" style={{ marginTop: '1em' }}>
-    <Row xs={1} sm={2} md={1} lg={2} xl={3} className="g-6">
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-      <CardType />
-    </Row>
-  </section>
-);
+function Cards({
+  accessoriesList, jewelryList, bagsList, cookingList, babySewingList, pouchesList, promosList,
+}) {
+  const selectedFilters = useSelector((state) => state.products.selectedFilters);
+
+  function normalizeString(input) {
+    // Assurez-vous que l'input est une chaîne de caractères
+    if (typeof input !== 'string') {
+      return '';
+    }
+    // Supprime les accents
+    const withoutAccents = input.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    // Supprime le "s" à la fin de la chaîne si présent
+    const withoutPlural = withoutAccents.toLowerCase().replace(/s$/, '');
+    return withoutPlural;
+  }
+
+  // Filtrer la liste en fonction des filtres sélectionnés
+  const filteredList = [...accessoriesList || [], ...jewelryList || [], ...bagsList || [], ...cookingList || [], ...babySewingList || [], ...pouchesList || [], ...promosList || []].filter(
+    (item) => {
+      // Vérifiez si au moins un filtre est sélectionné
+      if (selectedFilters.length === 0) {
+        return true; // Aucun filtre sélectionné, inclure tous les éléments
+      }
+      // Vérifiez si le nom normalisé de l'élément est inclus dans les filtres sélectionnés
+      const normalizedItemName = normalizeString(item.subcategory.name);
+      return selectedFilters.some((filter) => normalizeString(filter) === normalizedItemName);
+    },
+  );
+
+  return (
+    <section aria-label="Tous les produits" style={{ marginTop: '1em' }}>
+      <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-6">
+        {filteredList.map((item) => (
+          <CardType
+            key={item.id}
+            {...item}
+          />
+        ))}
+      </Row>
+    </section>
+  );
+}
+
+Cards.propTypes = {
+  accessoriesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+  jewelryList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+  bagsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+  cookingList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+  babySewingList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+  pouchesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+  promosList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.any.isRequired,
+    }),
+  ),
+};
 
 export default Cards;

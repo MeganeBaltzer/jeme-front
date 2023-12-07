@@ -2,7 +2,7 @@
 import {
   SET_MESSAGE_DESCRIPTION,
   CLEAN_MESSAGE_DESCRIPTION,
-} from '../../actions/messages';
+} from '../actions/messages';
 
 export const initialState = {
   messageLogin: '',
