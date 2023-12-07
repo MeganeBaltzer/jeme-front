@@ -19,6 +19,8 @@ function Filter({
     dispatch(setFilters([]));
   }, []);
 
+  // const [checkboxStates, setCheckboxStates] = useState([]);
+
   const mergedFilters = [
     ...accessoriesFilter || [],
     ...jewelryFilter || [],
@@ -30,16 +32,19 @@ function Filter({
 
   const handleCheckboxChange = (index, filterId) => {
     let newCheckboxStates = [...checkboxStates];
-    const filterName = mergedFilters[index].name;
+    const filterName = mergedFilters[index].name; // Récupère le nom du filtre
 
+    // Inverse la valeur du nom du filtre
     if (newCheckboxStates.includes(filterName)) {
       newCheckboxStates = newCheckboxStates.filter((name) => name !== filterName);
-    } else {
+    }
+    else {
       newCheckboxStates.push(filterName);
     }
 
     dispatch(setCheckboxStates(newCheckboxStates));
 
+    // Met à jour les filtres sélectionnés dans le Redux store
     const updatedFilters = newCheckboxStates.reduce((acc, filter) => {
       const filterNameBis = mergedFilters.find((f) => f.name === filter)?.name;
       if (filterNameBis) {

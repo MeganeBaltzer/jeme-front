@@ -24,7 +24,7 @@ function CardType({ description, poster, price }) {
 
   return (
     <Col>
-      <Container style={{ marginTop: '2em', width: '80%', marginBottom: '3em' }}>
+      <Container style={{ width: '80%', marginBottom: '3em' }}>
         <h1 style={{ fontSize: '1em', marginBottom: '1em', fontWeight: 'bold' }}>{description.toUpperCase()}</h1>
         <Link to="/" className="text-decoration-none text-waterGreen" aria-label="Lien vers la fiche produit">
           <img style={{ marginBottom: '1em' }} title="Voir la fiche produit" src={poster} className="img-fluid" alt={description} />

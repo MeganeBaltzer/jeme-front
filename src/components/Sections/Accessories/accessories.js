@@ -11,7 +11,7 @@ function Accessories() {
   const dispatch = useDispatch();
   // const [filterVisible, setFilterVisible] = useState(false);
   const accessoriesList = useSelector((state) => state.products.list.filter((item) => item.category.name === 'Accessoires'));
-  console.log(accessoriesList);
+  // console.log(accessoriesList);
   // const filterVisible = useSelector((state) => state.products.filterVisible);
 
   // const toggleFilter = () => {
@@ -24,7 +24,7 @@ function Accessories() {
         <Button
           variant="primary"
           style={{
-            position: 'fixed', top: '4.5em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
+            position: 'fixed', top: '2em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
           }}
           onClick={() => {
             dispatch(toggleFilter());

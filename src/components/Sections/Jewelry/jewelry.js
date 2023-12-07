@@ -23,7 +23,7 @@ function Jewerly() {
         <Button
           variant="primary"
           style={{
-            position: 'fixed', top: '4.5em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
+            position: 'fixed', top: '2em', left: '0', backgroundColor: '#c79f23', marginTop: '12em',
           }}
           onClick={() => {
             dispatch(toggleFilter());
