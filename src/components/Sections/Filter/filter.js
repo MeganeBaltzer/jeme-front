@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable max-len */
 import { useEffect, useCallback } from 'react';
 import { NavLink, Button } from 'react-bootstrap';
@@ -30,7 +31,7 @@ function Filter({
     ...pouchesFilter || [],
   ];
 
-  const handleCheckboxChange = (index, filterId) => {
+  const handleCheckboxChange = (index) => {
     let newCheckboxStates = [...checkboxStates];
     const filterName = mergedFilters[index].name; // Récupère le nom du filtre
 
@@ -109,37 +110,37 @@ Filter.propTypes = {
       id: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-  ).isRequired,
+  ),
   jewelryFilter: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-  ).isRequired,
+  ),
   babySewingFilter: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-  ).isRequired,
+  ),
   bagsFilter: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-  ).isRequired,
+  ),
   cookingFilter: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-  ).isRequired,
+  ),
   pouchesFilter: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
     }).isRequired,
-  ).isRequired,
+  ),
 };
 
 export default Filter;

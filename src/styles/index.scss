@@ -3,7 +3,7 @@
 @import "custom";
 
 body {
-  font-family: 'Handlee', cursive;
+  font-family: 'Rooney' ;
 }
 
 .anim {
@@ -52,5 +52,24 @@ body {
 
   &:hover {
     color: vars.$second-color;
+  }
+}
+
+.anim5 {
+  cursor: pointer;
+  color: white;
+
+  &:hover {
+    color: vars.$jeme;
+    transform: scale(1.02);
+  }
+}
+
+.anim6 {
+  cursor: pointer;
+
+  &:hover {
+    color: vars.$second-color;
+    transform: scale(1.02);
   }
 }

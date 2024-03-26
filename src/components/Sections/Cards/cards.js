@@ -9,6 +9,7 @@ function Cards({
   accessoriesList, jewelryList, bagsList, cookingList, babySewingList, pouchesList, promosList,
 }) {
   const selectedFilters = useSelector((state) => state.products.selectedFilters);
+  const inputValue = useSelector((state) => state.products.inputFilter);
 
   function normalizeString(input) {
     // Assurez-vous que l'input est une chaîne de caractères
@@ -35,15 +36,19 @@ function Cards({
     },
   );
 
+  console.log(filteredList);
+
   return (
     <section aria-label="Tous les produits" style={{ marginTop: '1em' }}>
       <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-6">
-        {filteredList.map((item) => (
-          <CardType
-            key={item.id}
-            {...item}
-          />
-        ))}
+        {filteredList
+          .filter((list) => list.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(inputValue.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')))
+          .map((list) => (
+            <CardType
+              key={list.id}
+              {...list}
+            />
+          ))}
       </Row>
     </section>
   );

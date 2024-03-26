@@ -4,6 +4,9 @@ import {
   SET_FILTERS,
   TOGGLE_FILTER,
   SET_CHECK_BOX_STATES,
+  SET_INPUT_VALUE,
+  SET_CARD_COUNT,
+  SET_BASKET_PRODUCTS,
 } from '../actions/products';
 
 export const initialState = {
@@ -13,6 +16,9 @@ export const initialState = {
   filterVisible: false,
   checkboxStates: [],
   selectedFilters: [],
+  inputFilter: '',
+  cardCount: 0,
+  basketProducts: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -41,12 +47,33 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         selectedFilters: action.payload,
+        isLoaded: true,
       };
 
     case SET_CHECK_BOX_STATES:
       return {
         ...state,
         checkboxStates: action.payload,
+      };
+
+    case SET_INPUT_VALUE:
+      // console.log('New input value:', action.payload);
+      return {
+        ...state,
+        inputFilter: action.payload,
+        isLoaded: true,
+      };
+
+    case SET_CARD_COUNT:
+      return {
+        ...state,
+        cardCount: action.payload,
+      };
+
+    case SET_BASKET_PRODUCTS:
+      return {
+        ...state,
+        basketProducts: [...state.basketProducts, action.payload],
       };
 
     default:

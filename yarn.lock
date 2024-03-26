@@ -1445,23 +1445,6 @@
   "resolved" "https://registry.npmjs.org/@fontsource/roboto/-/roboto-5.0.8.tgz"
   "version" "5.0.8"
 
-"@fortawesome/fontawesome-common-types@6.4.2":
-  "integrity" "sha512-1DgP7f+XQIJbLFCTX1V2QnxVmpLdKdzzo2k8EmvDOePfchaIGQ9eCHj2up3/jNEbZuBqel5OxiaOJf37TWauRA=="
-  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.4.2.tgz"
-  "version" "6.4.2"
-
-"@fortawesome/fontawesome-free@^6.4.2":
-  "integrity" "sha512-m5cPn3e2+FDCOgi1mz0RexTUvvQibBebOUlUlW0+YrMjDTPkiJ6VTKukA1GRsvRw+12KyJndNjj0O4AgTxm2Pg=="
-  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.4.2.tgz"
-  "version" "6.4.2"
-
-"@fortawesome/free-brands-svg-icons@^6.4.2":
-  "integrity" "sha512-LKOwJX0I7+mR/cvvf6qIiqcERbdnY+24zgpUSouySml+5w8B4BJOx8EhDR/FTKAu06W12fmUIcv6lzPSwYKGGg=="
-  "resolved" "https://registry.npmjs.org/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-6.4.2.tgz"
-  "version" "6.4.2"
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.4.2"
-
 "@humanwhocodes/config-array@^0.11.8":
   "integrity" "sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g=="
   "resolved" "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.8.tgz"
@@ -6667,10 +6650,10 @@
     "loose-envify" "^1.1.0"
     "scheduler" "^0.23.0"
 
-"react-icons@^4.11.0":
-  "integrity" "sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA=="
-  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.11.0.tgz"
-  "version" "4.11.0"
+"react-icons@^4.12.0":
+  "integrity" "sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw=="
+  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.12.0.tgz"
+  "version" "4.12.0"
 
 "react-is@^16.13.1", "react-is@^16.3.2", "react-is@^16.7.0":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="

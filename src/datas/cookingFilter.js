@@ -4,7 +4,7 @@ export default [
     id: '1',
   },
   {
-    name: 'Sac à tarte',
+    name: 'Sacs à tarte',
     id: '2',
   },
 ];

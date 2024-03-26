@@ -5,32 +5,14 @@ import {
 import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import instagramIcon from '../../../assets/img/instagram.svg';
 import './styles.scss';
 
 function Footer() {
   const instagramUrl = 'https://www.instagram.com/jeme_creations/';
-  const [burgerIsVisible, setBurgerIsVisible] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Fonction de rappel pour mettre à jour l'état en fonction de la taille de l'écran
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      setBurgerIsVisible(screenWidth < 990); // Par exemple, considérons que la largeur de l'écran inférieure à 768px est "mobile"
-    };
-
-    // Ajoute un écouteur d'événements pour détecter les changements de taille d'écran
-    window.addEventListener('resize', handleResize);
-
-    // Appelle la fonction de rappel une fois au montage pour définir l'état initial
-    handleResize();
-
-    // Nettoie l'écouteur d'événements lors du démontage du composant
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const burgerIsVisible = useSelector((state) => state.users.burgerIsVisible);
 
   const contactForm = () => {
     navigate('/contact');

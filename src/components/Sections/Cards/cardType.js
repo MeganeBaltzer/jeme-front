@@ -4,29 +4,39 @@ import { Link } from 'react-router-dom';
 import { BsFillCartDashFill, BsFillCartPlusFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 import { FcCheckmark } from 'react-icons/fc';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCardCount, setBasketProducts } from '../../../actions/products';
 
-function CardType({ description, poster, price }) {
-  const [cartCount, setCartCount] = useState(0);
+function CardType({ description, poster, price, slug }) {
+  const dispatch = useDispatch();
+  const cardCount = useSelector((state) => state.products.cardCount);
 
   const decreaseCount = () => {
-    if (cartCount > 0) {
-      setCartCount(cartCount - 1);
+    if (cardCount > 0) {
+      dispatch(setCardCount(cardCount - 1));
     }
   };
 
   const increaseCount = () => {
-    setCartCount(cartCount + 1);
+    dispatch(setCardCount(cardCount + 1));
   };
 
   const resetCount = () => {
-    setCartCount(0);
+    dispatch(setCardCount(0));
+  };
+
+  const handleAddToCart = () => {
+    dispatch(setBasketProducts({
+      description, price, poster, quantity: cardCount,
+    }));
+    resetCount();
   };
 
   return (
     <Col>
       <Container style={{ width: '80%', marginBottom: '3em' }}>
         <h1 style={{ fontSize: '1em', marginBottom: '1em', fontWeight: 'bold' }}>{description.toUpperCase()}</h1>
-        <Link to="/" className="text-decoration-none text-waterGreen" aria-label="Lien vers la fiche produit">
+        <Link to={`/product/${slug}`} className="text-decoration-none text-waterGreen" aria-label="Lien vers la fiche produit">
           <img style={{ marginBottom: '1em' }} title="Voir la fiche produit" src={poster} className="img-fluid" alt={description} />
         </Link>
         <div style={{ fontSize: '0.8em', marginTop: '0.2em', marginBottom: '1.5em', fontWeight: 'bold' }}>{price}€</div>
@@ -35,11 +45,11 @@ function CardType({ description, poster, price }) {
             <button type="button" style={{ border: 'none', backgroundColor: 'white' }}>
               <BsFillCartDashFill style={{ width: '2em' }} onClick={decreaseCount} />
             </button>
-            <span>{cartCount}</span>
+            <span>{cardCount}</span>
             <button type="button" style={{ border: 'none', backgroundColor: 'white' }}>
               <BsFillCartPlusFill style={{ width: '2em' }} onClick={increaseCount} />
             </button>
-            <button type="submit" style={{ border: 'none', backgroundColor: 'white' }}>
+            <button type="button" onClick={handleAddToCart} style={{ border: 'none', backgroundColor: 'white' }}>
               <FcCheckmark style={{ marginLeft: '1em' }} title="Ajouter le produit dans mon panier" />
             </button>
           </div>
@@ -59,6 +69,7 @@ CardType.propTypes = {
   poster: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.any.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default CardType;
